@@ -1,12 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>ScrapersList</title>
 </head>
+
 <body>
-    <h1>Testing!</h1>
+    <nav style="background-color: midnightblue;">
+        <div class="container nav-wrapper">
+            <a href="/" class="brand-logo">Scrapers List</a>
+            <ul id="nav-mobile" class="right">
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 style="text-align: center;">Search anything!</h1>
+        <div class="row">
+            <div class="col s4">
+                <div class="center">
+                    <i class="large material-icons" style="color: #ee5e73">flash_on</i>
+                    <p>A very fast web scraper</p>
+                    <p class="light center">Scrape any site with a beautiful GUI.</p>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="center">
+                    <i class="large material-icons" style="color: orange">camera</i>
+                    <p>Filter your searches</p>
+                    <p class="light center">Built in functionality to filter based on pricing.</p>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="center">
+                    <i class="large material-icons" style="color: orange">chrome_reader_mode</i>
+                    <p>A cool front-end to Craigslist</p>
+                    <p class="light center">Built with 💝</p>
+                </div>
+            </div>
+        </div>
+    {% block content %}
+    
+    {% endblock content %}
+    </div>
 </body>
+<!-- Javascript CDN materialize -->
+
 </html>
