@@ -8,4 +8,3 @@ class Search(models.Model):
         return '{}'.format(self .search)
     class Meta:
         verbose_name_plural = 'Searches'
-        
