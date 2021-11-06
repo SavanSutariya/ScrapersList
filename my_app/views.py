@@ -5,11 +5,12 @@ from requests.compat import quote_plus
 from bs4 import BeautifulSoup
 from .models import Search
 # Create your views here
-BASE_CRAIGSLIST_URL = 'https://losangeles.craigslist.org/search/?query={}'
 def home(request):
     return render(request, 'base.html')
 
 def new_search(request):
+    BASE_CRAIGSLIST_URL = 'https://losangeles.craigslist.org/search/?query={}'
+    BASE_IMAGE_URL = 'https://images.craigslist.org/{}_300x300.jpg'
     query = request.POST.get('query')
     # Search.objects.create(search=query)
     final_url = BASE_CRAIGSLIST_URL.format(quote_plus(query))
@@ -26,8 +27,15 @@ def new_search(request):
             post_price = post.find(class_='result-price').text
         else:
             post_price = 'N/A'
-        print(f"Title: {post_title} \n Price: {post_price}") 
-        final_posts.append((post_title, post_url, post_price)) 
+        post_image = []
+        try:
+            img = post.find(class_='result-image').get('data-ids').split(',')
+            for i in img:
+                post_image.append(BASE_IMAGE_URL.format(i.split(':')[1]))
+        except:
+            post_image.append('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png')
+        print(post_image)
+        final_posts.append((post_title, post_url, post_price, post_image)) 
 
     stuff_for_frontend = {
         'search': query,
