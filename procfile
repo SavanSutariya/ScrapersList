@@ -1,2 +1,2 @@
-web: gunicorn scrapers_list.wsgi
+web: gunicorn scraperslist.wsgi
 web: python manage.py runserver 0.0.0.0:5000
